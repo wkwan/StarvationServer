@@ -18625,7 +18625,7 @@
 		<drop event="Destroy" name="forgestone" count="1" tool_category="Disassemble" />
 	</block>
 	<block id="984" name="workingTv">
-		<property name="Class" value="TV, mods" />
+		<property name="Class" value="TV, Mods" />
 		<property name="WireOffset" value="0,0,0.5" />
 		<property name="RequiredPower" value="25" />
 		<property name="Material" value="metal" />
