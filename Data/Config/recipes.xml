@@ -11,9 +11,6 @@
 	<recipe name="electronicParts" count="1" tooltip="ttScrapMetalBrass">
 		<wildcard_forge_category />
 	</recipe>
-	<recipe name="brokenGlass" count="1" tooltip="ttScrapMetalBrass">
-		<wildcard_forge_category />
-	</recipe>
 	<recipe name="clayLump" count="1" craft_area="forge" material_based="true" craft_time="1" craft_exp_gain="0">
 		<ingredient name="unit_clay" count="5" />
 	</recipe>
@@ -1965,6 +1962,76 @@
 		<ingredient name="mechanicalParts" count="5" />
 		<ingredient name="electricParts" count="2" />
 	</recipe>
+	<recipe name="beeHive" count="1" craft_area="workbench">
+		<ingredient name="spring" count="3" />
+		<ingredient name="nail" count="30" />
+		<ingredient name="wood" count="200" />
+	</recipe>
+	<recipe name="foodHoney" count="1" craft_area="kitchenWorkbench">
+		<ingredient name="rawHoneycomb" count="2" />
+		<ingredient name="emptyJar" count="1" />
+	</recipe>
+	<recipe name="honeycomb" count="2" craft_area="kitchenWorkbench">
+		<ingredient name="rawHoneycomb" count="1" />
+	</recipe>
+	<recipe name="royalJelly" count="1" craft_area="kitchenWorkbench">
+		<ingredient name="rawRoyalJelly" count="4" />
+		<ingredient name="emptyJar" count="1" />
+	</recipe>
+	<recipe name="beeswax" count="1" craft_area="kitchenWorkbench" craft_tool="blender">
+		<ingredient name="rawHoneycomb" count="3" />
+	</recipe>
+	<recipe name="beesBread" count="1" craft_area="kitchenWorkbench">
+		<ingredient name="rawBeesBread" count="4" />
+	</recipe>
+	<recipe name="royalJellyCapsules" count="5" craft_area="scienceStation" craft_tool="medicalSet">
+		<ingredient name="royalJelly" count="1" />
+		<ingredient name="beeswax" count="1" />
+	</recipe>
+	<recipe name="propolisSerum" count="1" craft_area="scienceStation" craft_tool="medicalSet">
+		<ingredient name="rawPropolis" count="3" />
+		<ingredient name="emptyJar" count="1" />
+	</recipe>
+	<recipe name="honeyButter" count="5" craft_area="kitchenWorkbench" craft_tool="mixer">
+		<ingredient name="foodHoney" count="1" />
+		<ingredient name="beeswax" count="1" />
+		<ingredient name="emptyJar" count="1" />
+	</recipe>
+	<recipe name="honeyMead" count="1" craft_area="moonshine">
+		<ingredient name="foodHoney" count="1" />
+		<ingredient name="beesBread" count="1" />
+		<ingredient name="appleJuice" count="1" />
+	</recipe>
+	<recipe name="waxCandle" count="1" craft_area="scienceStation">
+		<ingredient name="beeswax" count="3" />
+		<ingredient name="cloth" count="1" />
+	</recipe>
+	<recipe name="beeKeepingShirt" count="1">
+		<ingredient name="flannelShirtWhite" count="1" />
+		<ingredient name="ductTape" count="1" />
+		<ingredient name="ironScissors" count="1" />
+		<ingredient name="rubber" count="2" />
+	</recipe>
+	<recipe name="beeKeepingBoots" count="1">
+		<ingredient name="wornBoots" count="1" />
+		<ingredient name="ductTape" count="1" />
+		<ingredient name="rubber" count="2" />
+	</recipe>
+	<recipe name="beeKeepingPants" count="1">
+		<ingredient name="overalls" count="2" />
+		<ingredient name="ductTape" count="2" />
+		<ingredient name="rubber" count="4" />
+	</recipe>
+	<recipe name="beeKeepingGloves" count="1">
+		<ingredient name="leatherGloves" count="1" />
+		<ingredient name="ductTape" count="1" />
+		<ingredient name="rubber" count="2" />
+	</recipe>
+	<recipe name="beeKeepingMask" count="1">
+		<ingredient name="cloth" count="20" />
+		<ingredient name="rubberBands" count="5" />
+		<ingredient name="ductTape" count="2" />
+	</recipe>
 	<recipe name="glassandCeramicsStation" count="1" craft_area="workbench">
 		<ingredient name="rockSmall" count="50" />
 		<ingredient name="clayLump" count="30" />
@@ -2058,35 +2125,35 @@
 		<ingredient name="unit_glass" count="110" />
 		<ingredient name="unit_stone" count="10" />
 		<ingredient name="unit_lead" count="40" />
-		<ingredient name="unit_plastic" count="20" />
+		<ingredient name="unit_plastic" count="10" />
 		<ingredient name="unit_clay" count="20" />
 	</recipe>
 	<recipe name="glassBulletproofPlate" count="1" craft_area="glassandCeramicsStation" craft_tool="forgeCrucible" material_based="true">
 		<ingredient name="unit_glass" count="110" />
 		<ingredient name="unit_stone" count="10" />
 		<ingredient name="unit_lead" count="40" />
-		<ingredient name="unit_plastic" count="20" />
+		<ingredient name="unit_plastic" count="10" />
 		<ingredient name="unit_clay" count="20" />
 	</recipe>
 	<recipe name="glassBulletproofCTRPlate" count="1" craft_area="glassandCeramicsStation" craft_tool="forgeCrucible" material_based="true">
 		<ingredient name="unit_glass" count="110" />
 		<ingredient name="unit_stone" count="10" />
 		<ingredient name="unit_lead" count="40" />
-		<ingredient name="unit_plastic" count="20" />
+		<ingredient name="unit_plastic" count="10" />
 		<ingredient name="unit_clay" count="20" />
 	</recipe>
 	<recipe name="glassBulletproofPlateCurved" count="1" craft_area="glassandCeramicsStation" craft_tool="forgeCrucible" material_based="true">
 		<ingredient name="unit_glass" count="110" />
 		<ingredient name="unit_stone" count="10" />
 		<ingredient name="unit_lead" count="40" />
-		<ingredient name="unit_plastic" count="20" />
+		<ingredient name="unit_plastic" count="10" />
 		<ingredient name="unit_clay" count="20" />
 	</recipe>
 	<recipe name="glassBulletproofRamp" count="1" craft_area="glassandCeramicsStation" craft_tool="forgeCrucible" material_based="true">
 		<ingredient name="unit_glass" count="110" />
 		<ingredient name="unit_stone" count="10" />
 		<ingredient name="unit_lead" count="40" />
-		<ingredient name="unit_plastic" count="20" />
+		<ingredient name="unit_plastic" count="10" />
 		<ingredient name="unit_clay" count="20" />
 	</recipe>
 	<recipe name="trapGlassBusinessSheet1x1" count="1" craft_area="glassandCeramicsStation" material_based="true">
@@ -2159,7 +2226,7 @@
 		<ingredient name="wood" count="1000" />
 		<ingredient name="leather" count="20" />
 		<ingredient name="yuccaFibers" count="500" />
-		<ingredient name="burningBarrel" count="8" />
+		<ingredient name="burningBarrelPlayer" count="8" />
 		<ingredient name="nail" count="25" />
 	</recipe>
 	<recipe name="grilledBass" count="1" craft_area="campfire" craft_tool="cookingGrill">
@@ -2172,7 +2239,7 @@
 		<ingredient name="fishFillet" count="1" />
 	</recipe>
 	<recipe name="fishingLure1" count="1">
-		<ingredient name="moldyBread" count="2" />
+		<ingredient name="moldyBread" count="1" />
 		<ingredient name="bottledWater" count="1" />
 		<ingredient name="paper" count="2" />
 	</recipe>
@@ -2368,8 +2435,9 @@
 		<ingredient name="spring" count="2" />
 	</recipe>
 	<recipe name="chainNlocks" count="1">
-		<ingredient name="forgedIron" count="4" />
-		<ingredient name="padlock" count="2" />
+		<ingredient name="forgedIron" count="3" />
+		<ingredient name="chains" count="1" />
+		<ingredient name="padlock" count="1" />
 		<ingredient name="wood" count="4" />
 	</recipe>
 	<recipe name="nailwood" count="1">
@@ -2809,14 +2877,17 @@
 	</recipe>
 	<recipe name="AnimalFeed" count="10" scrapable="False">
 		<ingredient name="hayBaleBlock" count="1" />
+		<ingredient name="cornMeal" count="2" />
 		<ingredient name="sunflowerOil" count="1" />
 	</recipe>
-	<recipe name="AnimalFeed" count="5" scrapable="False">
-		<ingredient name="wheat" count="1" />
-		<ingredient name="sunflowerOil" count="1" />
-	</recipe>
-	<recipe name="AnimalFeed" count="15" scrapable="False">
+	<recipe name="AnimalFeed" count="10" scrapable="False">
 		<ingredient name="yuccaFibers" count="10" />
+		<ingredient name="wheat" count="2" />
+		<ingredient name="sunflowerOil" count="1" />
+	</recipe>
+	<recipe name="AnimalFeed" count="10" scrapable="False">
+		<ingredient name="yuccaFibers" count="10" />
+		<ingredient name="cornMeal" count="2" />
 		<ingredient name="sunflowerOil" count="1" />
 	</recipe>
 	<!-- HUSBANDRY -->
@@ -2880,8 +2951,8 @@
 		<ingredient name="forgedIron" count="4" />
 	</recipe>
 	<recipe name="scrapBrass" count="1" craft_area="forge1" material_based="true" craft_time="1" craft_exp_gain="0">
-		<ingredient name="unit_zinc" count="10" />
-		<ingredient name="unit_copper" count="10" />
+		<ingredient name="unit_zinc" count="2" />
+		<ingredient name="unit_copper" count="5" />
 	</recipe>
 	<recipe name="clayLump" count="1" craft_area="forge1" material_based="true" craft_time="1" craft_exp_gain="0">
 		<ingredient name="unit_clay" count="5" />
@@ -2974,9 +3045,7 @@
 		<ingredient name="bottledWater" count="10" />
 	</recipe>
 	<recipe name="rubber" count="1" craft_area="campfire" craft_tool="cookingPot">
-		<ingredient name="cornMeal" count="5" />
-		<ingredient name="bottledWater" count="2" />
-		<ingredient name="glue" count="1" />
+		<ingredient name="scrapRubber" count="5" />
 	</recipe>
 	<recipe name="x-radBoots" count="1">
 		<ingredient name="cloth" count="6" />
@@ -3947,7 +4016,7 @@
 		<ingredient name="canEmpty" count="1" />
 	</recipe>
 	<recipe name="canEmpty" count="1" craft_area="lathe">
-		<ingredient name="scrapIron" count="2" />
+		<ingredient name="scrapIron" count="5" />
 	</recipe>
 	<recipe name="RatTrap" count="1">
 		<ingredient name="forgedIron" count="2" />
@@ -4067,7 +4136,7 @@
 		<ingredient name="animalFat" count="3" />
 		<ingredient name="grainAlcohol" count="1" />
 	</recipe>
-	<recipe name="gasCan" count="250" craft_area="moonshine" craft_time="250">
+	<recipe name="gasCan" count="250" craft_area="moonshine" craft_time="55">
 		<ingredient name="oilBarrel" count="1" />
 	</recipe>
 	<recipe name="Radio" count="1" scrapable="False">
@@ -4253,6 +4322,25 @@
 		<ingredient name="cloth" count="10" />
 	</recipe>
 	<!-- STARVATION STUFF -->
+	<recipe name="MinerArm" count="1" craft_area="mill">
+		<ingredient name="forgedSteel" count="20" />
+		<ingredient name="mechanicalParts" count="20" />
+		<ingredient name="smallEngine" count="1" />
+	</recipe>
+	<recipe name="miner" count="1" craft_area="mill">
+		<ingredient name="forgedSteel" count="50" />
+	</recipe>
+	<recipe name="MinerBlade" count="1" craft_area="lathe">
+		<ingredient name="forgedSteel" count="20" />
+		<ingredient name="rawDiamond" count="5" />
+	</recipe>
+	<recipe name="ControlBox" count="1" craft_area="scienceStation">
+		<ingredient name="electronicParts" count="20" />
+		<ingredient name="electricParts" count="15" />
+		<ingredient name="forgedSteel" count="5" />
+		<ingredient name="scrapPlastics" count="10" />
+		<ingredient name="glassBusinessSheet" count="1" />
+	</recipe>
 	<recipe name="steelBars" count="1" craft_area="forge1" craft_tool="forgeCrucible" material_based="true">
 		<ingredient name="unit_steel" count="100" />
 		<ingredient name="unit_clay" count="20" />

@@ -911,6 +911,12 @@
 		<property name="PlantGrowing.FertileLevel" value="1" />
 		<property name="PlantGrowing.IsRandom" value="false" />
 		<property name="HarvestOverdamage" value="false" />
+		<property name="ChanceToKillPlant" value="60" />
+		<!-- Chance to kill a plant once the threshold is reached -->
+		<property name="SnowToKillPlant" value="0.4" />
+		<!-- Snow level that can kill a plant -->
+		<property name="SnowToStopGrowth" value="0.15" />
+		<!-- Snow level to stop plant growth -->
 		<drop event="Destroy" count="0" />
 		<property name="Group" value="Food/Cooking" />
 		<property name="DescriptionKey" value="plantsBlockGroupDesc" />
@@ -935,6 +941,12 @@
 		<property name="PlantGrowing.FertileLevel" value="1" />
 		<property name="CropsGrown.BonusHarvestDivisor" value="9" />
 		<property name="HarvestOverdamage" value="false" />
+		<property name="ChanceToKillPlant" value="60" />
+		<!-- Chance to kill a plant once the threshold is reached -->
+		<property name="SnowToKillPlant" value="0.4" />
+		<!-- Snow level that can kill a plant -->
+		<property name="SnowToStopGrowth" value="0.15" />
+		<!-- Snow level to stop plant growth -->
 		<drop event="Destroy" count="0" />
 		<property name="DescriptionKey" value="plantsBlockGroupDesc" />
 	</block>
@@ -15396,6 +15408,93 @@
 		<drop event="Destroy" name="scrapIron" count="3,6" />
 		<drop event="Destroy" count="0" />
 	</block>
+	<block id="1602" name="beeHive">
+		<property name="Class" value="BeeHive, Mods" />
+		<property name="Material" value="wood_regular" />
+		<property name="Shape" value="ModelEntity" />
+		<property name="Model" value="#BeeHive?BeeHivePrefab" />
+		<property name="Collide" value="movement,melee,bullet,arrow,rocket" />
+		<property name="CanPickup" value="true" />
+		<property name="IsTerrainDecoration" value="true" />
+		<property name="LootList" value="128" />
+		<property name="TakeDelay" value="10" />
+		<!-- operation interval in game ticks -->
+		<!-- it will do this tick while there are missing "parts" -->
+		<!-- so it will be faster to create a swarm or produce a new queen -->
+		<property name="TickRate" value="200" />
+		<!-- when all parts are present it will actually slow down -->
+		<!-- but steadly produce honey (4 pices a day for 60 minutes days) -->
+		<property name="TickRateHoney" value="6000" />
+		<!-- snow value that makes the bees "hibernate" and stop producing -->
+		<property name="SnowToStop" value="0.1" />
+		<property name="debug" value="false" />
+		<property name="QueenName" value="beeQueen" />
+		<property name="SwarmName" value="bees" />
+		<property class="Products">
+			<!-- productus to produce and chance -->
+			<property name="rawHoneycomb" value="100" />
+			<property name="rawPropolis" value="30" />
+			<property name="rawRoyalJelly" value="15" />
+			<property name="rawBeesBread" value="50" />
+		</property>
+		<property name="flowersNames" value="plantedGoldenrod3Harvest,plantedChrysanthemum3Harvest" />
+		<property name="DecayRate" value="0" />
+		<property name="BuffsWhenActivate" value="bees" />
+		<property name="BuffsChance" value="0.60" />
+		<drop event="Destroy" count="0" />
+	</block>
+	<block id="1603" name="beesWaxCandle">
+		<property name="Shape" value="ModelEntity" />
+		<property name="Model" value="#CandleBeesWax?CandleBeesWaxPrefab" />
+		<property name="CustomIcon" value="candleTable" />
+		<property name="Collide" value="melee,bullet,arrow,rocket" />
+		<property name="IsDecoration" value="true" />
+		<property name="StabilitySupport" value="false" />
+		<!-- build restriction -->
+		<property name="CreativeMode" value="Player" />
+		<property name="Class" value="Torch" />
+		<property name="Material" value="organic" />
+		<property name="MaxDamage" value="1" />
+		<property name="Place" value="TowardsPlacerInverted" />
+		<property name="OnlySimpleRotations" value="true" />
+		<property name="CanPickup" value="true" param1="waxCandle" />
+		<property name="HeatMapStrength" value="1" />
+		<property name="HeatMapTime" value="1200" />
+		<property name="HeatMapFrequency" value="15" />
+		<drop event="Destroy" name="waxCandle" count="1" />
+		<property name="Group" value="Building" />
+		<property name="DescriptionKey" value="torchGroupDesc" />
+	</block>
+	<block id="1598" name="randomGem">
+		<property name="Class" value="Randomizer, Mods" />
+		<property name="Material" value="Msteel" />
+		<property name="Shape" value="ModelEntity" />
+		<property name="Model" value="#VanillaAssets?CrystalDynamicPrefab" />
+		<property name="Collide" value="movement,melee,bullet,arrow,rocket" />
+		<property name="CanPickup" value="false" />
+		<property name="IsTerrainDecoration" value="true" />
+		<!-- minumum,maximnum interval of allowed number of visible object per instance (MAX 12) -->
+		<property name="ShownInterval" value="0,12" />
+		<property class="ObjectList">
+			<!-- object names that will be randomly visible -->
+			<property name="1" value="Shard1" />
+			<property name="2" value="Shard2" />
+			<property name="3" value="Shard3" />
+			<property name="4" value="Shard4" />
+			<property name="5" value="Shard5" />
+			<property name="6" value="Shard6" />
+			<property name="7" value="Shard7" />
+			<property name="8" value="Shard8" />
+			<property name="9" value="Shard9" />
+			<property name="10" value="Shard10" />
+			<property name="11" value="Shard11" />
+			<property name="12" value="Shard12" />
+		</property>
+		<drop event="Harvest" name="rawDiamond" count="1,3" tool_category="harvestingTools" />
+		<drop event="Harvest" name="rockSmall" count="25" tool_category="harvestingTools" />
+		<drop event="Destroy" count="0" />
+		<drop event="Fall" name="destroyedStone" count="1" prob="0.1" stick_chance="0.5" />
+	</block>
 	<block id="1495" name="glassandCeramicsStation">
 		<property name="Class" value="Forge" />
 		<property name="Material" value="Mstone_scrap" />
@@ -15855,6 +15954,8 @@
 		<property name="animalSound" value="chickenSound" />
 		<!-- when there are animals, this sound will be emitted at day break - optional -->
 		<property name="wakeUpSound" value="rosterSound" />
+		<!-- snow value that makes the bees "hibernate" and stop producing -->
+		<property name="SnowToStop" value="0.1" />
 		<property name="Shape" value="ModelEntity" />
 		<property name="Model" value="#animalCoops?ChickenHousePrefab" />
 		<property name="LootList" value="87" />
@@ -15878,6 +15979,8 @@
 		<property name="animalSound" value="rabbitSound" />
 		<property name="wakeUpSound" value="" />
 		<property name="Model" value="#animalCoops?rabitCagePrefab" />
+		<!-- snow value that makes the bees "hibernate" and stop producing -->
+		<property name="SnowToStop" value="0.2" />
 	</block>
 	<block id="109" name="BoxTrap">
 		<!-- triggered trap -->
@@ -16555,6 +16658,9 @@
 		<property name="isPowered" value="true" />
 		<property name="soundOn" value="none" />
 		<property name="CanPickup" value="true" />
+		<property name="HeatMapStrength" value="1" />
+		<property name="HeatMapTime" value="1200" />
+		<property name="HeatMapFrequency" value="15" />
 		<property class="RepairItems">
 			<property name="electronicParts" value="1" />
 			<property name="scrapIron" value="1" />
@@ -16638,6 +16744,12 @@
 		<property name="PlantGrowing.IsRandom" value="false" />
 		<property name="FallOver" value="false" />
 		<property name="doDamage" value="true" />
+		<!-- Snow level to stop plant growth -->
+		<property name="SnowToStopGrowth" value="0.15" />
+		<!-- Snow level that can kill a plant -->
+		<property name="SnowToKillPlant" value="0.5" />
+		<!-- Chance to kill a plant once the threshold is reached -->
+		<property name="ChanceToKillPlant" value="60" />
 		<drop event="Destroy" name="" count="0" />
 	</block>
 	<block id="139" name="plantedBananaPalm">
@@ -16710,6 +16822,12 @@
 		<property name="PlantGrowing.GrowthRate" value="90" />
 		<property name="PlantGrowing.FertileLevel" value="5" />
 		<property name="PlantGrowing.IsRandom" value="false" />
+		<!-- Snow level to stop plant growth -->
+		<property name="SnowToStopGrowth" value="0.15" />
+		<!-- Snow level that can kill a plant -->
+		<property name="SnowToKillPlant" value="0.4" />
+		<!-- Chance to kill a plant once the threshold is reached -->
+		<property name="ChanceToKillPlant" value="60" />
 		<property name="FallOver" value="false" />
 		<drop event="Destroy" name="" count="0" />
 	</block>
@@ -16732,6 +16850,12 @@
 		<property name="PlantGrowing.GrowthRate" value="80" />
 		<property name="PlantGrowing.FertileLevel" value="5" />
 		<property name="PlantGrowing.IsRandom" value="false" />
+		<!-- Snow level to stop plant growth -->
+		<property name="SnowToStopGrowth" value="0.15" />
+		<!-- Snow level that can kill a plant -->
+		<property name="SnowToKillPlant" value="0.4" />
+		<!-- Chance to kill a plant once the threshold is reached -->
+		<property name="ChanceToKillPlant" value="60" />
 		<property name="FallOver" value="false" />
 		<drop event="Destroy" name="" count="0" />
 	</block>
@@ -16741,6 +16865,12 @@
 		<property name="Model" value="#strawberry?StrawberryPrefab" />
 		<property name="PlantGrowing.Next" value="strawberryPlant" />
 		<property name="PlantGrowing.GrowthRate" value="80" />
+		<!-- Snow level to stop plant growth -->
+		<property name="SnowToStopGrowth" value="0.15" />
+		<!-- Snow level that can kill a plant -->
+		<property name="SnowToKillPlant" value="0.3" />
+		<!-- Chance to kill a plant once the threshold is reached -->
+		<property name="ChanceToKillPlant" value="90" />
 	</block>
 	<block id="449" name="plantedCarrot">
 		<property name="Extends" value="plantedPaprika" />
@@ -16764,6 +16894,12 @@
 		<property name="PlantGrowing.Next" value="garlicPlant" />
 		<property name="PlantGrowing.GrowthRate" value="95" />
 		<property name="ModelOffset" value="0,-0.04,0" />
+		<!-- Snow level to stop plant growth -->
+		<property name="SnowToStopGrowth" value="0.25" />
+		<!-- Snow level that can kill a plant -->
+		<property name="SnowToKillPlant" value="0.6" />
+		<!-- Chance to kill a plant once the threshold is reached -->
+		<property name="ChanceToKillPlant" value="50" />
 	</block>
 	<block id="452" name="plantedSugarcane">
 		<property name="Extends" value="plantedPaprika" />
@@ -16779,6 +16915,12 @@
 		<property name="Model" value="#onion?onionPrefabSmall" />
 		<property name="PlantGrowing.Next" value="onionPlant" />
 		<property name="PlantGrowing.GrowthRate" value="95" />
+		<!-- Snow level to stop plant growth -->
+		<property name="SnowToStopGrowth" value="0.25" />
+		<!-- Snow level that can kill a plant -->
+		<property name="SnowToKillPlant" value="0.6" />
+		<!-- Chance to kill a plant once the threshold is reached -->
+		<property name="ChanceToKillPlant" value="50" />
 	</block>
 	<block id="454" name="plantedSalad">
 		<property name="Extends" value="plantedPaprika" />
@@ -16812,6 +16954,12 @@
 		<property name="CreativeMode" value="Dev" />
 		<property name="PlantGrowing.Next" value="sunflower" />
 		<property name="PlantGrowing.GrowthRate" value="75" />
+		<!-- Snow level to stop plant growth -->
+		<property name="SnowToStopGrowth" value="0.10" />
+		<!-- Snow level that can kill a plant -->
+		<property name="SnowToKillPlant" value="0.2" />
+		<!-- Chance to kill a plant once the threshold is reached -->
+		<property name="ChanceToKillPlant" value="90" />
 	</block>
 	<block id="458" name="plantedWheat">
 		<property name="Extends" value="plantedPaprika" />
@@ -16849,6 +16997,8 @@
 		<drop event="Harvest" name="wood" count="100" prob="1" />
 		<drop event="Harvest" name="wood" count="50" prob=".5" />
 		<drop event="Destroy" name="wood" count="50" prob="1" />
+		<!-- Snow level to stop plant growth -->
+		<property name="SnowToStopGrowth" value="0.2" />
 	</block>
 	<block id="460" name="smallBananaPalm">
 		<property name="CreativeMode" value="Dev" />
@@ -16870,6 +17020,8 @@
 		<property name="UpwardsCount" value="1" />
 		<property name="IsPlant" value="true" />
 		<property name="ParticleOnDeath" value="treeGib_burnt" />
+		<!-- Snow level to stop plant growth -->
+		<property name="SnowToStopGrowth" value="0.2" />
 		<!-- uses dummy texture id from opaque atlas -->
 		<property name="FallOver" value="false" />
 		<drop event="Harvest" name="wood" count="100" prob="1" />
@@ -16974,6 +17126,12 @@
 		<property name="PlantGrowing.GrowthRate" value="40" />
 		<property name="PlantGrowing.FertileLevel" value="1" />
 		<property name="PlantGrowing.IsRandom" value="false" />
+		<!-- Snow level to stop plant growth -->
+		<property name="SnowToStopGrowth" value="0.15" />
+		<!-- Snow level that can kill a plant -->
+		<property name="SnowToKillPlant" value="0.4" />
+		<!-- Chance to kill a plant once the threshold is reached -->
+		<property name="ChanceToKillPlant" value="60" />
 		<property name="FallOver" value="false" />
 		<drop event="Harvest" name="hempFibres" count="10" />
 		<drop event="Destroy" name="hempFibres" count="5" />
@@ -17133,11 +17291,23 @@
 		<!-- <drop event="Destroy" name="" count="0"/> -->
 		<drop event="Destroy" name="yuccaFibers" count="2,6" />
 		<property name="CropsGrown.BonusHarvestDivisor" value="9" />
+		<!-- Snow level to stop plant growth -->
+		<property name="SnowToStopGrowth" value="0.15" />
+		<!-- Snow level that can kill a plant -->
+		<property name="SnowToKillPlant" value="0.4" />
+		<!-- Chance to kill a plant once the threshold is reached -->
+		<property name="ChanceToKillPlant" value="60" />
 	</block>
 	<block id="953" name="tomatoPlant">
 		<property name="Extends" value="plantMaster" />
 		<property name="Model" value="#TomatoMaturePlant1?TomatoMaturePlant1Prefab" />
 		<property name="ModelOffset" value="0,-0.1,0" />
+		<!-- Snow level to stop plant growth -->
+		<property name="SnowToStopGrowth" value="0.1" />
+		<!-- Snow level that can kill a plant -->
+		<property name="SnowToKillPlant" value="0.25" />
+		<!-- Chance to kill a plant once the threshold is reached -->
+		<property name="ChanceToKillPlant" value="90" />
 		<drop event="Harvest" name="tomato" count="1" />
 	</block>
 	<block id="954" name="paprikaPlant">
@@ -17148,6 +17318,12 @@
 	<block id="955" name="strawberryPlant">
 		<property name="Extends" value="plantMaster" />
 		<property name="Model" value="#strawberry?StrawberryPrefab1" />
+		<!-- Snow level to stop plant growth -->
+		<property name="SnowToStopGrowth" value="0.1" />
+		<!-- Snow level that can kill a plant -->
+		<property name="SnowToKillPlant" value="0.2" />
+		<!-- Chance to kill a plant once the threshold is reached -->
+		<property name="ChanceToKillPlant" value="90" />
 		<drop event="Harvest" name="strawberry" count="2" />
 		<property name="CropsGrown.BonusHarvestDivisor" value="7" />
 	</block>
@@ -17169,6 +17345,12 @@
 		<drop event="Harvest" name="garlic" count="1" />
 		<property name="CropsGrown.BonusHarvestDivisor" value="16" />
 		<property name="ModelOffset" value="0,-0.005,0" />
+		<!-- Snow level to stop plant growth -->
+		<property name="SnowToStopGrowth" value="0.25" />
+		<!-- Snow level that can kill a plant -->
+		<property name="SnowToKillPlant" value="0.6" />
+		<!-- Chance to kill a plant once the threshold is reached -->
+		<property name="ChanceToKillPlant" value="40" />
 	</block>
 	<block id="959" name="sugarcanePlant">
 		<property name="Extends" value="plantMaster" />
@@ -17182,6 +17364,12 @@
 	<block id="960" name="onionPlant">
 		<property name="Extends" value="plantMaster" />
 		<property name="Model" value="#onion?onionPrefab" />
+		<!-- Snow level to stop plant growth -->
+		<property name="SnowToStopGrowth" value="0.25" />
+		<!-- Snow level that can kill a plant -->
+		<property name="SnowToKillPlant" value="0.6" />
+		<!-- Chance to kill a plant once the threshold is reached -->
+		<property name="ChanceToKillPlant" value="40" />
 		<drop event="Harvest" name="onion" count="1" />
 		<property name="CropsGrown.BonusHarvestDivisor" value="16" />
 	</block>
@@ -17211,6 +17399,12 @@
 		<property name="Extends" value="plantMaster" />
 		<property name="Model" value="#sunflower?sunflower" />
 		<property name="RotationAllowed" value="pivotOnFloor" />
+		<!-- Snow level to stop plant growth -->
+		<property name="SnowToStopGrowth" value="0.1" />
+		<!-- Snow level that can kill a plant -->
+		<property name="SnowToKillPlant" value="0.2" />
+		<!-- Chance to kill a plant once the threshold is reached -->
+		<property name="ChanceToKillPlant" value="90" />
 		<drop event="Harvest" name="sunflowerSeed" count="4" />
 		<property name="CropsGrown.BonusHarvestDivisor" value="8" />
 	</block>
@@ -18207,7 +18401,7 @@
 	</block>
 	<block id="1148" name="cntStorageFarmIcy">
 		<property name="CustomIcon" value="cntStorageFarm" />
-		<property name="Class" value="SecureLootMorte, Mods" />
+		<property name="Class" value="UpgradeRatedSecureLoot, Mods" />
 		<property name="LootList" value="10" />
 		<property name="Material" value="wood+wood" />
 		<property name="Shape" value="ModelEntity" />
@@ -18217,9 +18411,8 @@
 		<property class="RepairItems">
 			<property name="wood" value="20" />
 		</property>
-		<property name="UpgradeRated.ToBlock" value="cntStorageFarm">
-			<property name="UpgradeRated.Rate" value="15" />
-		</property>
+		<property name="UpgradeRated.ToBlock" value="cntStorageFarm" />
+		<property name="UpgradeRated.Rate" value="10" />
 		<property name="DowngradeBlock" value="cntStorageFarmInsecure" />
 		<drop event="Destroy" count="0" />
 		<property name="Group" value="Building" />
@@ -18484,6 +18677,8 @@
 		<drop event="Harvest" name="gunPowder" count="100" prob="0.5" />
 		<drop event="Harvest" name="headlight" count="1" prob="0.5" tool_category="Disassemble" />
 		<drop event="Harvest" name="headlight" count="1" prob="0.5" tool_category="Disassemble" />
+		<drop event="Harvest" name="gauge" count="1" prob="0.3" tool_category="Disassemble" />
+		<drop event="Harvest" name="gauge" count="1" prob="0.1" tool_category="Disassemble" />
 		<drop event="Harvest" name="mechanicalParts" count="10" prob=".6" tool_category="Disassemble" />
 		<drop event="Harvest" name="mechanicalParts" count="5" prob=".4" tool_category="Disassemble" />
 		<drop event="Harvest" name="mechanicalParts" count="5" prob=".2" tool_category="Disassemble" />
@@ -18529,6 +18724,8 @@
 		<drop event="Harvest" name="gunPowder" count="100" prob="0.5" />
 		<drop event="Harvest" name="headlight" count="1" prob="0.5" tool_category="Disassemble" />
 		<drop event="Harvest" name="headlight" count="1" prob="0.5" tool_category="Disassemble" />
+		<drop event="Harvest" name="gauge" count="1" prob="0.3" tool_category="Disassemble" />
+		<drop event="Harvest" name="gauge" count="1" prob="0.1" tool_category="Disassemble" />
 		<drop event="Harvest" name="mechanicalParts" count="10" prob=".6" tool_category="Disassemble" />
 		<drop event="Harvest" name="mechanicalParts" count="5" prob=".4" tool_category="Disassemble" />
 		<drop event="Harvest" name="mechanicalParts" count="5" prob=".2" tool_category="Disassemble" />
@@ -18749,6 +18946,7 @@
 		<property name="Material" value="wood" />
 		<property name="Shape" value="ModelEntity" />
 		<property name="Model" value="#rattrap?RatTrap" />
+		<property name="ModelOffset" value="0,0,0" />
 		<property name="Collide" value="movement,bullet,rocket,melee" />
 		<property class="RepairItems">
 			<property name="wood" value="5" />
@@ -18980,21 +19178,22 @@
 		<property name="Class" value="Gore" />
 		<property name="CreativeMode" value="Dev" />
 		<property name="Material" value="organic" />
+		<property name="MaxDamage" value="350" />
 		<property name="Shape" value="ModelEntity" />
 		<property name="Model" value="Entities/Gore/gore_block1_Prefab" />
 		<property name="ImposterDontBlock" value="true" />
-		<property name="Collide" value="movement,melee,bullet,arrow,rocket" />
+		<property name="Collide" value="melee,bullet,arrow,rocket" />
 		<property name="Place" value="TowardsPlacerInverted" />
-		<property name="IsTerrainDecoration" value="true" />
 		<property name="Tag" value="Gore" />
-		<property name="FallDamage" value="true" />
-		<property name="LootList" value="1" />
-		<property name="DowngradeBlock" value="goreBlock1BonesPrefab" />
-		<drop event="Harvest" name="femur" count="1,3" tool_category="Butcher" />
-		<drop event="Harvest" name="rottingFlesh" count="2" tool_category="Butcher" />
-		<drop event="Harvest" name="rottingFlesh" count="1" />
-		<drop event="Harvest" name="femur" count="1" />
+		<property name="IsTerrainDecoration" value="true" />
+		<property name="FallDamage" value="false" />
+		<property name="LootList" value="71" />
+		<drop event="Harvest" name="rottingFlesh" count="1,3" prob="1" tool_category="Butcher" />
+		<drop event="Harvest" name="femur" count="1,2" prob="0.4" tool_category="Butcher" />
+		<drop event="Harvest" name="animalFat" count="1,2" prob="0.33" tool_category="Butcher" />
+		<drop event="Harvest" name="femur" count="1,2" prob="1" tool_category="Butcher" />
 		<drop event="Destroy" count="0" />
+		<property name="DroppedEntityClass" value="EvisceratedRemains" />
 	</block>
 	<block id="1506" name="SpawnerBanditSoldier">
 		<property name="Class" value="PrefabSpawner, Mods" />
@@ -19031,6 +19230,69 @@
 		<property name="Model" value="Entities/Trees/Prefabs/Stump" />
 		<property name="group" value="BanditBoss" />
 		<property name="NumberToSpawn" value="1" />
+	</block>
+	<block id="1599" name="npcFollowerRangedCorpse">
+		<property name="Class" value="Gore" />
+		<property name="CreativeMode" value="Dev" />
+		<property name="Material" value="organic" />
+		<property name="MaxDamage" value="350" />
+		<property name="Shape" value="ModelEntity" />
+		<property name="Model" value="Entities/Gore/gore_block1_Prefab" />
+		<property name="ImposterDontBlock" value="true" />
+		<property name="Collide" value="melee,bullet,arrow,rocket" />
+		<property name="Place" value="TowardsPlacerInverted" />
+		<property name="Tag" value="Gore" />
+		<property name="IsTerrainDecoration" value="true" />
+		<property name="FallDamage" value="false" />
+		<property name="LootList" value="72" />
+		<drop event="Harvest" name="rottingFlesh" count="1,3" prob="1" tool_category="Butcher" />
+		<drop event="Harvest" name="femur" count="1,2" prob="0.4" tool_category="Butcher" />
+		<drop event="Harvest" name="animalFat" count="1,2" prob="0.33" tool_category="Butcher" />
+		<drop event="Harvest" name="femur" count="1,2" prob="1" tool_category="Butcher" />
+		<drop event="Destroy" count="0" />
+		<property name="DroppedEntityClass" value="EvisceratedRemains" />
+	</block>
+	<block id="1600" name="npcBanditBossCorpse">
+		<property name="Class" value="Gore" />
+		<property name="CreativeMode" value="Dev" />
+		<property name="Material" value="organic" />
+		<property name="MaxDamage" value="350" />
+		<property name="Shape" value="ModelEntity" />
+		<property name="Model" value="Entities/Gore/gore_block1_Prefab" />
+		<property name="ImposterDontBlock" value="true" />
+		<property name="Collide" value="melee,bullet,arrow,rocket" />
+		<property name="Place" value="TowardsPlacerInverted" />
+		<property name="Tag" value="Gore" />
+		<property name="IsTerrainDecoration" value="true" />
+		<property name="FallDamage" value="false" />
+		<property name="LootList" value="73" />
+		<drop event="Harvest" name="rottingFlesh" count="1,3" prob="1" tool_category="Butcher" />
+		<drop event="Harvest" name="femur" count="1,2" prob="0.4" tool_category="Butcher" />
+		<drop event="Harvest" name="animalFat" count="1,2" prob="0.33" tool_category="Butcher" />
+		<drop event="Harvest" name="femur" count="1,2" prob="1" tool_category="Butcher" />
+		<drop event="Destroy" count="0" />
+		<property name="DroppedEntityClass" value="EvisceratedRemains" />
+	</block>
+	<block id="1601" name="npcPlasmaBossCorpse">
+		<property name="Class" value="Gore" />
+		<property name="CreativeMode" value="Dev" />
+		<property name="Material" value="organic" />
+		<property name="MaxDamage" value="350" />
+		<property name="Shape" value="ModelEntity" />
+		<property name="Model" value="Entities/Gore/gore_block1_Prefab" />
+		<property name="ImposterDontBlock" value="true" />
+		<property name="Collide" value="melee,bullet,arrow,rocket" />
+		<property name="Place" value="TowardsPlacerInverted" />
+		<property name="Tag" value="Gore" />
+		<property name="IsTerrainDecoration" value="true" />
+		<property name="FallDamage" value="false" />
+		<property name="LootList" value="132" />
+		<drop event="Harvest" name="rottingFlesh" count="1,3" prob="1" tool_category="Butcher" />
+		<drop event="Harvest" name="femur" count="1,2" prob="0.4" tool_category="Butcher" />
+		<drop event="Harvest" name="animalFat" count="1,2" prob="0.33" tool_category="Butcher" />
+		<drop event="Harvest" name="femur" count="1,2" prob="1" tool_category="Butcher" />
+		<drop event="Destroy" count="0" />
+		<property name="DroppedEntityClass" value="EvisceratedRemains" />
 	</block>
 	<!-- toys -->
 	<block id="1486" name="kennyBlock">
@@ -19245,6 +19507,108 @@
 		<property name="CustomIcon" value="ui_game_symbol_fogParticle" />
 		<property name="IsTerrainDecoration" value="true" />
 	</block>
+	<block id="1597" name="miner">
+		<property name="Class" value="Miner, Mods" />
+		<property name="LootList" value="10" />
+		<property name="LootListTools" value="126" />
+		<property name="Material" value="Msteel" />
+		<property name="Shape" value="ModelEntity" />
+		<property name="Model" value="#Miner?MinerPrefab" />
+		<property name="MultiBlockDim" value="1,2,1" />
+		<property name="CanPickup" value="true" />
+		<property name="Group" value="Building" />
+		<property name="CoolDownTime" value="10" />
+		<!-- Time for cooldown and stage countdown in seconds (1-15) -->
+		<property name="StageTime" value="60" />
+		<!-- Stage Duration in seconds (1-120) -->
+		<property name="MaxStages" value="4" />
+		<!-- Maximum number of stages (1-15) -->
+		<property name="MaxMinedBlocks" value="200" />
+		<!-- Maximum number of blocks the miner can mine per full event -->
+		<property name="MinerRadius" value="3" />
+		<!-- Radius of the Mining Area -->
+		<property name="SafetyRadius" value="10,3,10" />
+		<!-- Radius to check for "invalid" blocks. If there are too many man made blocks around, the miner will stop -->
+		<!-- REQUIRED PARTS -->
+		<property class="Parts">
+			<!-- name = itemName, value = transform name to show/hide, param1 = parent itemName (parent must be present for it to show in mesh) -->
+			<property name="ControlBox" value="ControlBox" param2="true" />
+			<property name="MinerArm" value="toolArmGroup" />
+			<property name="MinerBlade" value="toolBladeGroup" param1="MinerArm" />
+		</property>
+		<!-- STAGES DEFINITION -->
+		<property class="Stage1">
+			<property name="minerGroup" value="MinerZeds" />
+			<!-- Special miner entities -->
+			<property name="minerGroupMinMax" value="1,2" />
+			<!-- minimum and maximum amount to spawn on this wave -->
+			<property name="randomGroup" value="ZombiesAll" />
+			<!-- Common entities to spawn -->
+			<property name="randomGroupMinMax" value="2,5" />
+			<property name="specialGroup" value="" />
+			<!-- Special entities to spawn -->
+			<property name="specialGroupMinMax" value="0,0" />
+			<property name="bossGroup" value="" />
+			<!-- bosses to spawn -->
+			<property name="bossGroupMinMax" value="0,0" />
+		</property>
+		<property class="Stage2">
+			<property name="minerGroup" value="MinerZeds" />
+			<property name="minerGroupMinMax" value="2,4" />
+			<property name="randomGroup" value="ZombiesAll" />
+			<property name="randomGroupMinMax" value="4,8" />
+			<property name="specialGroup" value="" />
+			<property name="specialGroupMinMax" value="0,0" />
+			<property name="bossGroup" value="" />
+			<property name="bossGroupMinMax" value="0,0" />
+		</property>
+		<property class="Stage3">
+			<property name="minerGroup" value="MinerZeds" />
+			<property name="minerGroupMinMax" value="3,6" />
+			<property name="randomGroup" value="ZombiesAll" />
+			<property name="randomGroupMinMax" value="6,10" />
+			<property name="specialGroup" value="ZombiesFeral" />
+			<property name="specialGroupMinMax" value="0,1" />
+			<property name="bossGroup" value="SpecialZds" />
+			<property name="bossGroupMinMax" value="0,1" />
+		</property>
+		<property class="Stage4">
+			<property name="minerGroup" value="MinerZeds" />
+			<property name="minerGroupMinMax" value="3,6" />
+			<property name="randomGroup" value="ZombiesAll" />
+			<property name="randomGroupMinMax" value="6,10" />
+			<property name="specialGroup" value="ZombiesFeral" />
+			<property name="specialGroupMinMax" value="1,3" />
+			<property name="bossGroup" value="MinerBossGroup" />
+			<property name="bossGroupMinMax" value="1,1" />
+		</property>
+		<property name="ImposterDontBlock" value="true" />
+		<property name="DescriptionKey" value="minerDesc" />
+		<property name="BigDecorationRadius" value="2" />
+		<property name="powerType" value="failurerelay" />
+		<property name="MultiBlockDim" value="2,7,2" />
+		<property name="StabilitySupport" value="false" />
+		<property name="OnlySimpleRotations" value="true" />
+		<property class="RepairItems">
+			<property name="forgedIron" value="5" />
+			<property name="electricParts" value="3" />
+			<property name="electronicParts" value="2" />
+			<property name="scrapPlastics" value="2" />
+		</property>
+		<drop event="Harvest" name="scrapIron" count="200" tool_category="harvestingTools" />
+		<drop event="Harvest" name="forgedIron" count="5" tool_category="harvestingTools" />
+		<drop event="Harvest" name="forgedIron" count="10" tool_category="Disassemble" />
+		<drop event="Harvest" name="mechanicalParts" count="8" tool_category="Disassemble" />
+		<drop event="Harvest" name="forgedSteel" count="5" tool_category="Disassemble" />
+		<drop event="Harvest" name="forgedIron" count="20" tool_category="Military" />
+		<drop event="Harvest" name="mechanicalParts" count="12" tool_category="Military" />
+		<drop event="Harvest" name="forgedSteel" count="10" tool_category="Military" />
+		<drop event="Destroy" count="0" />
+		<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1" />
+		<property name="Stacknumber" value="1" />
+		<property name="TakeDelay" value="30" />
+		<property name="EconomicValue" value="2000" />
+	</block>
 	<block id="1497" name="steelBars">
 		<property name="Material" value="Msteel" />
 		<property name="Weight" value="100" />
@@ -19254,6 +19618,9 @@
 		<!-- All models are free assets from Unity store by KrazyFX -->
 		<property name="Collide" value="melee,movement" />
 		<property name="CustomIcon" value="ui_game_symbol_steelBars" />
+		<property class="RepairItems">
+			<property name="forgedSteel" value="10" />
+		</property>
 		<drop event="Harvest" name="scrapSteel" count="3,5" tool_category="Disassemble" />
 		<drop event="Destroy" count="0" />
 		<drop event="Destroy" name="scrapSteel" count="2,5" />
@@ -19266,6 +19633,9 @@
 		<property name="Model" value="#SteelBars?SteelBarsCenteredPrefab" />
 		<property name="Collide" value="melee,movement" />
 		<property name="CustomIcon" value="ui_game_symbol_steelBarsCentered" />
+		<property class="RepairItems">
+			<property name="forgedSteel" value="10" />
+		</property>
 		<drop event="Harvest" name="scrapSteel" count="3,5" tool_category="Disassemble" />
 		<drop event="Destroy" count="0" />
 		<drop event="Destroy" name="scrapSteel" count="2,5" />

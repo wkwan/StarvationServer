@@ -75,11 +75,11 @@
 	<buff id="steroids" duration="3000" actions="addimmunity(sickness)" icon="ui_game_symbol_pills" name_key="steroids" description_key="steroidsDesc" tooltip_key="steroidsTooltip" />
 	<buff id="cured" duration="3000" stack="reset" icon="ui_game_symbol_pills" name_key="cured" description_key="curedDesc" tooltip_key="curedTooltip" />
 	<buff id="smelly" duration="30" smell="largeSmell" icon="ui_game_symbol_dysentery" name_key="smelly" description_key="smellyDesc" tooltip_key="smellyTooltip" />
-	<buff id="infection" mutex="cured,infection1,infection2,infection3,infection4" duration="9000" onexpired="infection1" type="sickness" icon="ui_game_symbol_infection" name_key="infection" description_key="infectionDesc" tooltip_key="infectionTooltip" cures="foodHoney,antibiotics,herbalAntibiotics"></buff>
-	<buff id="infection1" duration="9000" actions="debuff(infection)" onexpired="infection2" type="sickness" icon="ui_game_symbol_infection" name_key="infection1" description_key="infection1Desc" tooltip_key="infection1Tooltip" cures="antibiotics">
+	<buff id="infection" mutex="cured,infection1,infection2,infection3,infection4" duration="1000" onexpired="infection1" type="sickness" icon="ui_game_symbol_infection" name_key="infection" description_key="infectionDesc" tooltip_key="infectionTooltip" cures="foodHoney,antibiotics,herbalAntibiotics"></buff>
+	<buff id="infection1" duration="10000" actions="debuff(infection)" onexpired="infection2" type="sickness" icon="ui_game_symbol_infection" name_key="infection1" description_key="infection1Desc" tooltip_key="infection1Tooltip" cures="antibiotics">
 		<modify id="0" stat="stamina" amount="-0.3" rate="1" />
 	</buff>
-	<buff id="infection2" duration="9000" actions="damage(25,2100t,0,3);increment(@wellness, -0.25, 100t, 0, 0);debuff(infection);debuff(infection1)" onexpired="infection3" type="sickness" icon="ui_game_symbol_infection" name_key="infection2" description_key="infection2Desc" tooltip_key="infection2Tooltip" cures="antibiotics">
+	<buff id="infection2" duration="10000" actions="damage(25,2100t,0,3);increment(@wellness, -0.25, 100t, 0, 0);debuff(infection);debuff(infection1)" onexpired="infection3" type="sickness" icon="ui_game_symbol_infection" name_key="infection2" description_key="infection2Desc" tooltip_key="infection2Tooltip" cures="antibiotics">
 		<modify id="0" stat="stamina" amount="-1" rate="1" />
 	</buff>
 	<buff id="infection3" duration="3000" actions="damage(25,800t,0,3);increment(@wellness, -0.25, 100t, 0, 0);debuff(infection);debuff(infection1);debuff(infection2)" onexpired="infection4" type="sickness" icon="ui_game_symbol_infection" name_key="infection3" description_key="infection3Desc" tooltip_key="infection3Tooltip" cures="antibiotics">
@@ -273,11 +273,19 @@
 	<buff id="coolByAirCon" duration="0" stack="discard" buffif="-heatSource gequal 1" debuffif="-heatSource less 1" type="coretemp" icon="ui_game_symbol_cool" name_key="coolByAirCon" description_key="coolByAirConDesc" tooltip_key="coolByAirConTooltip">
 		<modify id="0" stat="coretemp" modifyValue="-30" />
 	</buff>
+	<!-- this buff, while on, will prevent the player to get stung by bees -->
+	<buff id="beeSuit" duration="0" name_key="beeSuit" description_key="beeSuitDesc" icon="ui_game_symbol_beesuit" />
+	<buff id="royalJellyStaminaBoost" duration="200" stack="extend" type="staminaup" icon="ui_game_symbol_pills" name_key="royalJellyBoost" description_key="royalJellyBoostDesc">
+		<modify id="0" stat="stamina" amount="4" rate="2" />
+	</buff>
+	<buff id="beesBreadBuff" duration="180" stack="extend" type="healthup" icon="ui_game_symbol_pills" name_key="beesBreadBuffBuffName" description_key="beesBreadBuffDesc">
+		<modify id="1" stat="health" amount="0.54" rate="1" />
+	</buff>
 	<buff id="flies" duration="30" stack="discard" actions="attach(#FliesParticle10?FliesParticle10, Origin/CameraNode, 0, firstperson);increment(sanity, -0.5, 1, 30, 0)" icon="ui_game_symbol_fly" description_key="" />
 	<buff id="bees" duration="30" stack="discard" mutex="cannotBreath,drowning" actions="attach(#BeesParticle?BeesParticle, Origin/CameraNode, 0, firstperson);increment(sanity, -0.5, 1, 30, 0)" onexpired="stung" icon="ui_game_symbol_bees" description_key="">
 		<modify id="1" stat="health" amount="-0.5" rate="2" />
 	</buff>
-	<buff id="stung" duration="1500" actions="increment(@sanity, -0.1, 0, 0, 1)" type="sickness" icon="ui_game_symbol_stung" name_key="stung" description_key="stungDesc" tooltip_key="stungToolTip">
+	<buff id="stung" mutex="beeSuit" duration="1500" actions="increment(@sanity, -0.1, 0, 0, 1)" type="sickness" icon="ui_game_symbol_stung" name_key="stung" description_key="stungDesc" tooltip_key="stungToolTip">
 		<modify id="2" stat="stamina" amount="-1" rate="5" />
 		<modify id="3" stat="health" amount="-0.5" rate="10" />
 	</buff>
@@ -311,20 +319,36 @@
 		<modify id="0" stat="stamina" amount="-5" rate="1" />
 		<modify id="1" stat="health" amount="-1" rate="30" />
 	</buff>
-	<buff id="BossRegen" duration="15" type="healthup" ffcheck="true" actions="attach(#effects?Fog, Graphics, 15)" icon="ui_game_symbol_fire" name_key="BossRegen" description_key="electricalShockDesc">
+	<buff id="BossRegen" duration="15" type="healthup" ffcheck="true" actions="attach(#effects?Fog, Graphics, 15)" icon="ui_game_symbol_regen" name_key="BossRegen" description_key="electricalShockDesc">
 		<modify id="1" stat="health" amount="30" rate="1" />
 	</buff>
-	<buff id="ZedRez" duration="10" type="healthup" icon="ui_game_symbol_fire" name_key="ZedRez" description_key="electricalShockDesc">
+	<buff id="ZedRez" duration="10" type="healthup" icon="ui_game_symbol_rezz" name_key="ZedRez" description_key="electricalShockDesc">
 		<modify id="1" stat="health" amount="2" rate="1" />
 	</buff>
 	<buff id="BossSpawn" duration="5" ffcheck="true" actions="attach(#effects?BloodSplatter, Graphics, 5)" icon="ui_game_symbol_fire" name_key="BossRegen" description_key="electricalShockDesc" />
-	<buff id="BossRez" duration="5" ffcheck="true" actions="attach(#effects?LightningField, Graphics, 5)" icon="ui_game_symbol_fire" name_key="BossRegen" description_key="electricalShockDesc" />
+	<buff id="BossRez" duration="5" ffcheck="true" actions="attach(#effects?LightningField, Graphics, 5)" icon="ui_game_symbol_rezz" name_key="BossRegen" description_key="electricalShockDesc" />
 	<buff id="BossVomit" duration="3" ffcheck="true" actions="attach(#RadSpider?SpiderVomit, Graphics, 3)" icon="ui_game_symbol_fire" name_key="BossRegen" description_key="electricalShockDesc" />
 	<buff id="Vomit" mutex="VomitCoolDown" onexpired="VomitCoolDown" type="sickness" actions="attach(#Vomit?Vomit, Origin/CameraNode, 0, firstperson);increment(@wellness, -0.02, 4, 0, 0)" duration="10" icon="ui_game_symbol_vomit" castsound="vomit" name_key="Vomit" description_key="VomitDesc" tooltip_key="vomitTooltip">
 		<modify id="0" stat="stamina" amount="-1" rate="1" />
 		<modify id="1" stat="speedmodifier" mulValue="0.3" />
 	</buff>
 	<buff id="VomitCoolDown" duration="20" stack="discard" />
+	<buff id="Stomp" duration="5" ffcheck="true" actions="attach(#DustStorm?DustStorm, Graphics, 5)" icon="ui_game_symbol_fire" name_key="BossRegen" description_key="electricalShockDesc" />
+	<buff id="freezingStomp" duration="60" stack="extend" type="staminaup" icon="ui_game_symbol_freeze" name_key="freezingStomp" description_key="freezingStompDesc" tooltip_key="freezingStompToolTip">
+		<modify id="1" stat="coretemp" modifyValue="-50" />
+	</buff>
+	<buff id="webbed" mutex="stunCooldown" duration="3" actions="increment(@wellness, -0.5, 0, 0, 1)" onexpired="stunCooldown" type="speedmodifier" icon="ui_game_symbol_web" name_key="webbed" description_key="You've been webbed" tooltip_key="Webbed">
+		<modify id="0" stat="speedmodifier" mulValue="0.0" />
+	</buff>
+	<buff id="plasmaImpact" stack="extend" mutex="GlandShield" duration="1" type="Drowning" actions="attach(ParticleEffects/p_electric_shock, @impact);damage(100,1,0,0)" castsound="electric_fence_impact" onexpired="plasmaEffect" name_key="plasmaImpact">
+		<modify id="0" stat="speedmodifier" mulValue="0.5" />
+	</buff>
+	<buff id="plasmaEffect" stack="discard" mutex="GlandShield" duration="10" type="speedmodifier" actions="attach(ParticleEffects/p_electric_shock, @impact);damage(5,1,0,0)" icon="ui_game_symbol_electric_shock" name_key="plasmaEffect" description_key="You suffered a huge energy impact">
+		<modify id="0" stat="speedmodifier" mulValue="0.5" />
+	</buff>
+	<!-- <buff id="plasmaImpact" stack="stack" stacklimit="3" mutex="GlandShield" duration="1" type="Drowning" actions="damage(100,1,0,0)" castsound="electric_fence_impact" onexpired="plasmaEffect" icon="ui_game_symbol_electric_shock" name_key="plasmaImpact" description_key="Plasma Hit">
+		<modify id="0" stat="stamina" amount="-1" rate="1" />
+	</buff> -->
 	<!-- SCURVY DISEASE -->
 	<!-- You get 1 scurvy level every hour -->
 	<buff id="MetabolizeScurvy" mutex="fruity" buffif="+full &gt; 0" duration="0" actions="increment(scurvyLevel, 1, 100t, 0, 0)" name_key="MetabolizeScurvy" />
@@ -447,8 +471,8 @@
 	<buff id="sanityNormal" duration="2" actions="increment(sanity, -1, 1, 0, 1)" name_key="sanityNormal" />
 	<buff id="sanityMedium" duration="2" actions="increment(sanity, -3, 1, 0, 1)" name_key="sanityMedium" />
 	<buff id="sanityBig" duration="2" actions="increment(sanity, -50, 1, 0, 1)" name_key="sanityBig" />
-	<buff id="resetsanity" name_key="resetsanity" buffif="sanity less 0" debuffif="sanity gequal 0" duration="0" actions="min(sanity, 0)" />
-	<buff id="maxsanity" name_key="maxsanity" buffif="sanity gequal 150" debuffif="sanity less 150" duration="0" actions="max(sanity, 150)" />
+	<buff id="resetsanity" name_key="resetsanity" buffif="sanity less 0" debuffif="sanity gequal 0" duration="0" actions="setvar(sanity,0);min(sanity, 0)" />
+	<buff id="maxsanity" name_key="maxsanity" buffif="sanity gequal 150" debuffif="sanity less 150" duration="0" actions="setvar(sanity,149);max(sanity, 150)" />
 	<!-- STARVATION -->
 	<buff id="bite" mutex="infectedBite,rabies" duration="9000" onexpired="infectedBite" type="sickness" icon="ui_game_symbol_bite" name_key="bite" description_key="biteDesc" tooltip_key="biteTooltip" cures="firstAid" />
 	<buff id="infectedBite" duration="9000" actions="debuff(bite)" onexpired="rabies" type="sickness" icon="ui_game_symbol_rabies1" name_key="infectedBite" description_key="infectedBiteDesc" tooltip_key="infectedBiteTooltip" cures="foodHoney,antibiotics,herbalAntibiotics">
@@ -526,6 +550,24 @@
 	<buff id="addrad" name_key="addrad" duration="1" actions="increment(radlevel, 5, 0, 0, 1)" description_key="addrad" tooltip_key="addrad" icon="ui_game_symbol_resetrad" />
 	<!-- this buff, while on, will prevent the player to get sick from radiation -->
 	<buff id="radSuit" duration="9000" name_key="radSuit" debuffif="radlevel greater 0" description_key="radSuitDesc" tooltip_key="radSuitDesc" icon="ui_game_symbol_hazmat" />
+	<buff id="winter0" duration="1" stack="reset" actions="debuff(winter1);debuff(winter2);debuff(winter3);debuff(winter4);debuff(winter5)" type="coretemp">
+		<modify id="0" stat="coretemp" modifyValue="-1" />
+	</buff>
+	<buff id="winter1" duration="0" stack="reset" actions="debuff(winter0);debuff(winter2);debuff(winter3);debuff(winter4);debuff(winter5)" type="coretemp">
+		<modify id="0" stat="coretemp" modifyValue="-8" />
+	</buff>
+	<buff id="winter2" duration="0" stack="reset" actions="debuff(winter0);debuff(winter1);debuff(winter3);debuff(winter4);debuff(winter5)" type="coretemp">
+		<modify id="0" stat="coretemp" modifyValue="-10" />
+	</buff>
+	<buff id="winter3" duration="0" stack="reset" actions="debuff(winter0);debuff(winter1);debuff(winter2);debuff(winter4);debuff(winter5)" type="coretemp">
+		<modify id="0" stat="coretemp" modifyValue="-30" />
+	</buff>
+	<buff id="winter4" duration="0" stack="reset" actions="debuff(winter0);debuff(winter1);debuff(winter2);debuff(winter3);debuff(winter5)" type="coretemp">
+		<modify id="0" stat="coretemp" modifyValue="-50" />
+	</buff>
+	<buff id="winter5" duration="0" stack="reset" actions="debuff(winter0);debuff(winter1);debuff(winter2);debuff(winter3);debuff(winter4)" type="coretemp">
+		<modify id="0" stat="coretemp" modifyValue="-100" />
+	</buff>
 	<!-- RAD MOD -->
 	<!-- this buff, while on, will prevent the player to get sick from radiation -->
 	<!-- it also decreases power in time, until it reaches 0 -->
@@ -534,11 +576,31 @@
 	<!-- increases speed and stamina regeneration -->
 	<buff id="exoSpeed" duration="0" name_key="exoSpeed">
 		<modify id="0" stat="stamina" amount="15" rate="1" />
-		<modify id="0" stat="speedmodifier" setValue="1.5" />
+		<modify id="0" stat="speedmodifier" mulValue="1.5" />
 	</buff>
 	<!-- decreases speed -->
 	<buff id="exoGun" duration="0" name_key="exoGun" actions="min(powerLevel, 0);increment(powerLevel, -0.25, 50t, 0, 0)">
-		<modify id="0" stat="speedmodifier" setValue="0.5" />
+		<modify id="0" stat="speedmodifier" mulValue="0.5" />
+	</buff>
+	<!-- Speed Boost by Parasite Gland -->
+	<buff id="GlandSpeed" duration="10" type="speedmodifier" actions="attach(#effects?LightningField, @impact, 10);increment(addiction, 11, 0, 0, 1)" icon="ui_game_symbol_speedboost" castsound="inject" name_key="GlandSpeed" description_key="Your reflexes are incredibly enhanced." tooltip_key="Speed Boost">
+		<modify id="1" stat="speedmodifier" mulValue="2.5" />
+	</buff>
+	<!-- Health Regen by WallCrusher Gland -->
+	<buff id="GlandRegen" duration="15" type="healthup" ffcheck="true" actions="attach(#effects?Fog, @impact, 15);increment(addiction, 10, 0, 0, 1)" icon="ui_game_symbol_regen" castsound="inject" name_key="GlandRegen" description_key="You release a cloud of the mysterious Wall Crusher gas, and feel suprisingly healthy." tooltip_key="Health Boost">
+		<modify id="1" stat="health" amount="30" rate="1" />
+	</buff>
+	<!-- Ressurect Players by Rezzer Gland -->
+	<buff id="GlandRezz" duration="10" ffcheck="true" actions="attach(ParticleEffects/p_electric_shock, @impact, 10);increment(addiction, 12, 0, 0, 1)" icon="ui_game_symbol_rezz" castsound="inject" name_key="GlandRezz" description_key="You release an extream electrical discharge, capable of restarting the heart of the fallen." tooltip_key="Rezz Charge">
+		<modify id="1" stat="health" amount="1" rate="5" />
+	</buff>
+	<!-- Cooling Down Effect by Yeti Gland -->
+	<buff id="GlandCool" duration="15" stack="extend" actions="attach(ParticleEffects/p_breath, Origin/CameraNode, 0, firstperson);increment(addiction, 10, 0, 0, 1)" icon="ui_game_symbol_freeze" castsound="inject" name_key="GlandCool" description_key="You release a burst of refreshing cold air" tooltip_key="Cooling Air">
+		<modify id="1" stat="coretemp" modifyValue="-50" />
+	</buff>
+	<!-- Resistence to electricity -->
+	<buff id="GlandShield" duration="15" stack="extend" actions="attach(#particles?shield, @impact, 15);increment(addiction, 5, 0, 0, 1)" icon="ui_game_symbol_shield" castsound="inject" name_key="GlandShield" description_key="You create a protective field, granting imunity to energy attacks" tooltip_key="Electrical Shield">
+		<modify id="1" stat="health" amount="-1" rate="5" />
 	</buff>
 	<buff id="radDesolation" duration="1" onexpired="radiation1" icon="ui_game_symbol_stunned" name_key="radDesolation" description_key="radDesolationDesc" tooltip_key="criticalBluntTooltip" castsound="Buffs/critical_blunt">
 		<modify id="0" stat="health" amount="-150" rate="1" />
